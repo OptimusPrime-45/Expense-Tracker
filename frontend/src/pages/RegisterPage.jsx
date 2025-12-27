@@ -5,7 +5,7 @@ import Card from "../components/common/Card";
 import Button from "../components/common/Button";
 import Input from "../components/common/Input";
 import { useTheme } from "../context/ThemeContext";
-import { UserPlus, Zap } from "lucide-react";
+import { UserPlus, Zap, Moon, Sun } from "lucide-react";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +17,7 @@ const RegisterPage = () => {
   const [errors, setErrors] = useState({});
   const { register } = useAuth();
   const navigate = useNavigate();
-  const { isDarkMode } = useTheme();
+  const { isDarkMode, toggleTheme } = useTheme();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -85,6 +85,19 @@ const RegisterPage = () => {
         isDarkMode ? "" : "bg-gray-50"
       }`}
     >
+      {/* Theme Toggle Button */}
+      <button
+        onClick={toggleTheme}
+        className={`absolute top-4 right-4 z-20 p-3 rounded-xl transition-all duration-300 ${
+          isDarkMode
+            ? "bg-dark-700/50 border border-neon-aqua/30 text-neon-aqua hover:border-neon-aqua hover:shadow-neon-aqua"
+            : "bg-white border border-gray-300 text-gray-700 hover:border-gray-400 hover:shadow-lg"
+        }`}
+        aria-label="Toggle theme"
+      >
+        {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+      </button>
+
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/3 right-1/3 w-96 h-96 bg-neon-aqua/10 rounded-full blur-3xl animate-pulse"></div>

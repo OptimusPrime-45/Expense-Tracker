@@ -5,7 +5,7 @@ import Card from "../components/common/Card";
 import Button from "../components/common/Button";
 import Input from "../components/common/Input";
 import { useTheme } from "../context/ThemeContext";
-import { Lock, Mail, Zap } from "lucide-react";
+import { Lock, Mail, Zap, Moon, Sun } from "lucide-react";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +15,7 @@ const LoginPage = () => {
   const [errors, setErrors] = useState({});
   const { login } = useAuth();
   const navigate = useNavigate();
-  const { isDarkMode } = useTheme();
+  const { isDarkMode, toggleTheme } = useTheme();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -69,6 +69,19 @@ const LoginPage = () => {
         isDarkMode ? "" : "bg-gray-50"
       }`}
     >
+      {/* Theme Toggle Button */}
+      <button
+        onClick={toggleTheme}
+        className={`absolute top-4 right-4 z-20 p-3 rounded-xl transition-all duration-300 ${
+          isDarkMode
+            ? "bg-dark-700/50 border border-neon-green/30 text-neon-green hover:border-neon-green hover:shadow-neon-green"
+            : "bg-white border border-gray-300 text-gray-700 hover:border-gray-400 hover:shadow-lg"
+        }`}
+        aria-label="Toggle theme"
+      >
+        {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+      </button>
+
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-green/10 rounded-full blur-3xl animate-pulse"></div>
