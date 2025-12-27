@@ -64,7 +64,11 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+    <div
+      className={`min-h-screen flex items-center justify-center p-4 relative overflow-hidden ${
+        isDarkMode ? "" : "bg-gray-50"
+      }`}
+    >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-green/10 rounded-full blur-3xl animate-pulse"></div>
@@ -82,7 +86,7 @@ const LoginPage = () => {
           <h1 className="text-4xl font-bold gradient-text mb-2">
             Welcome Back
           </h1>
-          <p className="text-gray-300">
+          <p className={isDarkMode ? "text-gray-300" : "text-gray-700"}>
             Sign in to your{" "}
             <span className="text-neon-green font-semibold">
               ExpenseTracker
@@ -123,7 +127,9 @@ const LoginPage = () => {
                 />
                 <label
                   htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-300"
+                  className={`ml-2 block text-sm ${
+                    isDarkMode ? "text-gray-300" : "text-gray-700"
+                  }`}
                 >
                   Remember me
                 </label>
@@ -145,7 +151,11 @@ const LoginPage = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-gray-400">
+            <p
+              className={`text-sm ${
+                isDarkMode ? "text-gray-400" : "text-gray-600"
+              }`}
+            >
               Don't have an account?{" "}
               <Link
                 to="/register"
@@ -158,7 +168,11 @@ const LoginPage = () => {
         </Card>
 
         <div className="mt-6 text-center">
-          <p className="text-xs text-gray-500">
+          <p
+            className={`text-xs ${
+              isDarkMode ? "text-gray-500" : "text-gray-600"
+            }`}
+          >
             &copy; 2025 ExpenseTracker. All rights reserved.
           </p>
         </div>

@@ -80,7 +80,11 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+    <div
+      className={`min-h-screen flex items-center justify-center p-4 relative overflow-hidden ${
+        isDarkMode ? "" : "bg-gray-50"
+      }`}
+    >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/3 right-1/3 w-96 h-96 bg-neon-aqua/10 rounded-full blur-3xl animate-pulse"></div>
@@ -98,7 +102,7 @@ const RegisterPage = () => {
           <h1 className="text-4xl font-bold gradient-text mb-2">
             Create Account
           </h1>
-          <p className="text-gray-300">
+          <p className={isDarkMode ? "text-gray-300" : "text-gray-700"}>
             Join{" "}
             <span className="text-neon-aqua font-semibold">ExpenseTracker</span>{" "}
             today
@@ -152,7 +156,11 @@ const RegisterPage = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-gray-400">
+            <p
+              className={`text-sm ${
+                isDarkMode ? "text-gray-400" : "text-gray-600"
+              }`}
+            >
               Already have an account?{" "}
               <Link
                 to="/login"
@@ -165,7 +173,11 @@ const RegisterPage = () => {
         </Card>
 
         <div className="mt-6 text-center">
-          <p className="text-xs text-gray-500">
+          <p
+            className={`text-xs ${
+              isDarkMode ? "text-gray-500" : "text-gray-600"
+            }`}
+          >
             &copy; 2025 ExpenseTracker. All rights reserved.
           </p>
         </div>
