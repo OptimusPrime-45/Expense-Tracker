@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+// Get API URL from environment variable or use proxy in development
+const API_URL = import.meta.env.VITE_API_URL || '';
+
 // Create an axios instance with default configuration
 const api = axios.create({
-  baseURL: '/api', // This will be proxied to the backend
+  baseURL: API_URL ? `${API_URL}/api` : '/api', // Use full URL in production, proxy in dev
   headers: {
     'Content-Type': 'application/json',
   },
@@ -43,8 +46,9 @@ export const transactionAPI = {
   deleteTransaction: (id) => api.delete(`/transactions/${id}`),
   exportToCSV: () => {
     const token = localStorage.getItem('token');
+    const baseURL = API_URL ? `${API_URL}/api` : '/api';
     return axios({
-      url: '/api/transactions/export/csv',
+      url: `${baseURL}/transactions/export/csv`,
       method: 'GET',
       responseType: 'blob', // Important for file download
       headers: {
