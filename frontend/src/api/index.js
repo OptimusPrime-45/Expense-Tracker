@@ -1,11 +1,8 @@
 import axios from 'axios';
 
-// Get API URL from environment variable or use proxy in development
-const API_URL = import.meta.env.VITE_API_URL || '';
-
 // Create an axios instance with default configuration
 const api = axios.create({
-  baseURL: API_URL ? `${API_URL}/api` : '/api', // Use full URL in production, proxy in dev
+  baseURL: '/api', // Vercel rewrites will proxy to backend in production
   headers: {
     'Content-Type': 'application/json',
   },
@@ -46,9 +43,8 @@ export const transactionAPI = {
   deleteTransaction: (id) => api.delete(`/transactions/${id}`),
   exportToCSV: () => {
     const token = localStorage.getItem('token');
-    const baseURL = API_URL ? `${API_URL}/api` : '/api';
     return axios({
-      url: `${baseURL}/transactions/export/csv`,
+      url: '/api/transactions/export/csv',
       method: 'GET',
       responseType: 'blob', // Important for file download
       headers: {
